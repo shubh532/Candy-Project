@@ -54,17 +54,19 @@ function Show_On_Screen(data) {
 
 function buy1(id, newcandy, newdescription, newprice, newquantity) {
     let newQuanty = newquantity - 1
-
-    axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
-        candy: newcandy,
-        description: newdescription,
-        price: newprice,
-        quantity: newQuanty
-    })
-        .catch(err => {
-            console.log(err)
+    if (newQuanty === 0) {
+        document.body.innerHTML += `<h6>${newcandy} is not available</h6>`
+    } else {
+        axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
+            candy: newcandy,
+            description: newdescription,
+            price: newprice,
+            quantity: newQuanty
         })
-
+            .catch(err => {
+                console.log(err)
+            })
+    }
     window.addEventListener("DOMContentLoaded", () => {
         axios.get("https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata")
             .then(res => {
@@ -79,46 +81,54 @@ function buy1(id, newcandy, newdescription, newprice, newquantity) {
 function buy2(id, newcandy, newdescription, newprice, newquantity) {
     let newQuanty = newquantity - 2
 
-    axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
-        candy: newcandy,
-        description: newdescription,
-        price: newprice,
-        quantity: newQuanty
-    })
-        .catch(err => {
-            console.log(err)
+    if (newQuanty === 0) {
+        document.body.innerHTML += `<h6>${newcandy} is not available</h6>`
+    } else {
+        axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
+            candy: newcandy,
+            description: newdescription,
+            price: newprice,
+            quantity: newQuanty
         })
-    window.addEventListener("DOMContentLoaded", () => {
-        axios.get("https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata")
-            .then(res => {
-                for (let i = 0; i < res.data.length; i++) {
-                    Show_On_Screen(res.data[i])
-                }
-
+            .catch(err => {
+                console.log(err)
             })
-    })
+        window.addEventListener("DOMContentLoaded", () => {
+            axios.get("https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata")
+                .then(res => {
+                    for (let i = 0; i < res.data.length; i++) {
+                        Show_On_Screen(res.data[i])
+                    }
 
-}
-function buy3(id, newcandy, newdescription, newprice, newquantity) {
-    let newQuanty = newquantity - 2
-
-    axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
-        candy: newcandy,
-        description: newdescription,
-        price: newprice,
-        quantity: newQuanty
-    })
-        .catch(err => {
-            console.log(err)
+                })
         })
-    window.addEventListener("DOMContentLoaded", () => {
-        axios.get("https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata")
-            .then(res => {
-                for (let i = 0; i < res.data.length; i++) {
-                    Show_On_Screen(res.data[i])
-                }
 
-            })
-    })
-
+    }
 }
+    function buy3(id, newcandy, newdescription, newprice, newquantity) {
+        let newQuanty = newquantity - 2
+
+        if (newQuanty === 0) {
+            document.body.innerHTML += `<h6>${newcandy} is not available</h6>`
+        } else {
+            axios.put(`https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata/${id}`, {
+                candy: newcandy,
+                description: newdescription,
+                price: newprice,
+                quantity: newQuanty
+            })
+                .catch(err => {
+                    console.log(err)
+                })
+            window.addEventListener("DOMContentLoaded", () => {
+                axios.get("https://crudcrud.com/api/8dacb0a0ccc2498fbee5d55ca4a8e7c4/Candydata")
+                    .then(res => {
+                        for (let i = 0; i < res.data.length; i++) {
+                            Show_On_Screen(res.data[i])
+                        }
+
+                    })
+            })
+
+        }
+    }
